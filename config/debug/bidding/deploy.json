@@ -1,5 +1,7 @@
 {
   "args": {
-    "multiSigAddress": null
+    "multiSigAddress": null,
+    "startHeight": null,
+    "endHeight": null
   }
 }

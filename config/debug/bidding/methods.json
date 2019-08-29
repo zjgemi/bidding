@@ -2,11 +2,9 @@
   "allMethods": [
     "getConfig",
     "setConfig",
-    "pledge",
-    "cancelPledge",
-    "getAddressIndexes",
-    "getAddresses",
-    "getCurrentPledge",
+    "getAddressList",
+    "getPledge",
+    "getTotal",
     "getPledges",
     "distribute",
     "transferFund"
@@ -25,34 +23,22 @@
         "config": null
       }
     },
-    "pledge": {
+    "getAddressList": {
       "caller": "{caller}",
       "value": "0",
       "args": {}
     },
-    "cancelPledge": {
-      "caller": "{caller}",
-      "value": "0",
-      "args": {}
-    },
-    "getAddressIndexes": {
-      "caller": "{caller}",
-      "value": "0",
-      "args": {}
-    },
-    "getAddresses": {
-      "caller": "{caller}",
-      "value": "0",
-      "args": {
-        "index": null
-      }
-    },
-    "getCurrentPledge": {
+    "getPledge": {
       "caller": "{caller}",
       "value": "0",
       "args": {
         "address": null
       }
+    },
+    "getTotal": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
     },
     "getPledges": {
       "caller": "{caller}",

@@ -24,17 +24,17 @@ class Online extends OnlineBase {
         return String(fs.readFileSync(p))
     }
 
-    async _deployTest(multiSigAddress) {
+    async _deployTest(multiSigAddress, startHeight, endHeight) {
         try {
-            return this._testResult(await this.nebUtil.deployTest(this._account.getAddressString(), this._source, [multiSigAddress]))
+            return this._testResult(await this.nebUtil.deployTest(this._account.getAddressString(), this._source, [multiSigAddress, startHeight, endHeight]))
         } finally {
             this._reset()
         }
     }
     
-    async _deploy(multiSigAddress) {
+    async _deploy(multiSigAddress, startHeight, endHeight) {
         try {
-            return await this._getDeployResult('Bidding', await this.nebUtil.oneKeyDeploy(this._account, this._source, [multiSigAddress]))
+            return await this._getDeployResult('Bidding', await this.nebUtil.oneKeyDeploy(this._account, this._source, [multiSigAddress, startHeight, endHeight]))
         } finally {
             this._reset()
         }
@@ -72,81 +72,49 @@ class Online extends OnlineBase {
         }
     }
 
-    async pledgeTest() {
+    async getAddressListTest() {
         try {
-            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'pledge', Array.from(arguments)))
+            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'getAddressList', Array.from(arguments)))
         } finally {
             this._reset()
         }
     }
 
-    async pledge() {
+    async getAddressList() {
         try {
-            return await this._getTxResult('Bidding.pledge', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'pledge', Array.from(arguments)))
+            return await this._getTxResult('Bidding.getAddressList', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'getAddressList', Array.from(arguments)))
         } finally {
             this._reset()
         }
     }
 
-    async cancelPledgeTest() {
+    async getPledgeTest(address) {
         try {
-            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'cancelPledge', Array.from(arguments)))
+            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'getPledge', [address]))
         } finally {
             this._reset()
         }
     }
 
-    async cancelPledge() {
+    async getPledge(address) {
         try {
-            return await this._getTxResult('Bidding.cancelPledge', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'cancelPledge', Array.from(arguments)))
+            return await this._getTxResult('Bidding.getPledge', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'getPledge', [address]))
         } finally {
             this._reset()
         }
     }
 
-    async getAddressIndexesTest() {
+    async getTotalTest() {
         try {
-            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'getAddressIndexes', Array.from(arguments)))
+            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'getTotal', Array.from(arguments)))
         } finally {
             this._reset()
         }
     }
 
-    async getAddressIndexes() {
+    async getTotal() {
         try {
-            return await this._getTxResult('Bidding.getAddressIndexes', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'getAddressIndexes', Array.from(arguments)))
-        } finally {
-            this._reset()
-        }
-    }
-
-    async getAddressesTest(index) {
-        try {
-            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'getAddresses', [index]))
-        } finally {
-            this._reset()
-        }
-    }
-
-    async getAddresses(index) {
-        try {
-            return await this._getTxResult('Bidding.getAddresses', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'getAddresses', [index]))
-        } finally {
-            this._reset()
-        }
-    }
-
-    async getCurrentPledgeTest(address) {
-        try {
-            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'getCurrentPledge', [address]))
-        } finally {
-            this._reset()
-        }
-    }
-
-    async getCurrentPledge(address) {
-        try {
-            return await this._getTxResult('Bidding.getCurrentPledge', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'getCurrentPledge', [address]))
+            return await this._getTxResult('Bidding.getTotal', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'getTotal', Array.from(arguments)))
         } finally {
             this._reset()
         }

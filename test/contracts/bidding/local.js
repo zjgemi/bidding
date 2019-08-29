@@ -10,9 +10,9 @@ class _Local extends _LocalBase {
         return Bidding
     }
 
-    _deploy(multiSigAddress) {
+    _deploy(multiSigAddress, startHeight, endHeight) {
         try {
-            return _LocalContext._deploy(this._account, Bidding, [multiSigAddress])
+            return _LocalContext._deploy(this._account, Bidding, [multiSigAddress, startHeight, endHeight])
         } finally {
             this._reset()
         }
@@ -26,24 +26,16 @@ class _Local extends _LocalBase {
         return this._call(Bidding, 'setConfig', this._value, [config])
     }
 
-    pledge() {
-        return this._call(Bidding, 'pledge', this._value, Array.from(arguments))
+    getAddressList() {
+        return this._call(Bidding, 'getAddressList', this._value, Array.from(arguments))
     }
 
-    cancelPledge() {
-        return this._call(Bidding, 'cancelPledge', this._value, Array.from(arguments))
+    getPledge(address) {
+        return this._call(Bidding, 'getPledge', this._value, [address])
     }
 
-    getAddressIndexes() {
-        return this._call(Bidding, 'getAddressIndexes', this._value, Array.from(arguments))
-    }
-
-    getAddresses(index) {
-        return this._call(Bidding, 'getAddresses', this._value, [index])
-    }
-
-    getCurrentPledge(address) {
-        return this._call(Bidding, 'getCurrentPledge', this._value, [address])
+    getTotal() {
+        return this._call(Bidding, 'getTotal', this._value, Array.from(arguments))
     }
 
     getPledges() {
