@@ -1,0 +1,76 @@
+{
+  "allMethods": [
+    "getConfig",
+    "setConfig",
+    "pledge",
+    "cancelPledge",
+    "getAddressIndexes",
+    "getAddresses",
+    "getCurrentPledge",
+    "getPledges",
+    "distribute",
+    "transferFund"
+  ],
+  "testMethods": [],
+  "params": {
+    "getConfig": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
+    },
+    "setConfig": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {
+        "config": null
+      }
+    },
+    "pledge": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
+    },
+    "cancelPledge": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
+    },
+    "getAddressIndexes": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
+    },
+    "getAddresses": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {
+        "index": null
+      }
+    },
+    "getCurrentPledge": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {
+        "address": null
+      }
+    },
+    "getPledges": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
+    },
+    "distribute": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {}
+    },
+    "transferFund": {
+      "caller": "{caller}",
+      "value": "0",
+      "args": {
+        "addr": null,
+        "value": null
+      }
+    }
+  }
+}
