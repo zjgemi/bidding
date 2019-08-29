@@ -13,7 +13,7 @@ LocalContext.clearData()
 
 async function main() {
     Bidding._deploy(TestKeys.caller.getAddressString())
-    Bidding.setConfig({"multiSig": TestKeys.caller.getAddressString(),"token": "n1wdr57GeDF65SDzN9ZyXkkvJ2tmMGhMkuR"})
+    Bidding.setConfig({"multiSig": TestKeys.caller.getAddressString(),"NAX": "n1wdr57GeDF65SDzN9ZyXkkvJ2tmMGhMkuR"})
     console.log(Bidding.getConfig())
     LocalContext.transfer(null, TestKeys.otherKeys[0].getAddressString(), BigNumber(12000.1).mul(BigNumber(10).pow(18)))
     LocalContext.transfer(null, TestKeys.otherKeys[1].getAddressString(), BigNumber(80000).mul(BigNumber(10).pow(18)))
@@ -21,6 +21,9 @@ async function main() {
     Bidding._setAccount(TestKeys.otherKeys[0])._setValue(BigNumber(7000.1).mul(BigNumber(10).pow(18))).pledge()
     Bidding._setAccount(TestKeys.otherKeys[1])._setValue(BigNumber(80000).mul(BigNumber(10).pow(18))).pledge()
     Bidding._setAccount(TestKeys.otherKeys[2])._setValue(BigNumber(9200).mul(BigNumber(10).pow(18))).pledge()
+
+    console.log(Bidding.getPledges())
+
     Bidding._setAccount(TestKeys.otherKeys[0])._setValue(BigNumber(5000).mul(BigNumber(10).pow(18))).pledge()
     
     console.log(Bidding.getPledges())

@@ -289,7 +289,7 @@ Bidding.prototype = {
         this._verifyFromMultisig();
         this._config = {
             multiSig: config.multiSig,
-            token: config.token
+            NAX: config.NAX
         };
     },
 
@@ -365,17 +365,17 @@ Bidding.prototype = {
             let value = BigNumber(ps[addr]);
             tot = tot.add(value);
         }
-        let tokenContract = new Blockchain.Contract(this._config.token);
+        let NAXContract = new Blockchain.Contract(this._config.NAX);
         for (var addr in ps) {
             let value = BigNumber(ps[addr]);
             let nax = value.div(tot).mul(3000000);
-            nax = nax.mul(BigNumber(10).pow(9));
+            nax = nax.mul(BigNumber(10).pow(9)).floor().toString(10);
             //console.log("transfer nax "+nax+" to "+addr);
-            tokenContract.call("transfer", addr, nax);
+            NAXContract.call("transfer", addr, nax);
 
             if (tot > 20000) {
                 let returnNAS = value.sub(value.div(tot).mul(20000));
-                returnNAS = returnNAS.mul(this._unit)
+                returnNAS = returnNAS.mul(this._unit).floor().toString(10);
                 let r = Blockchain.transfer(addr, returnNAS);
                 if (r) {
                     Event.Trigger("returnNAS", {
