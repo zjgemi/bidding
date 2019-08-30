@@ -42,8 +42,8 @@ class _Local extends _LocalBase {
         return this._call(Bidding, 'getPledges', this._value, Array.from(arguments))
     }
 
-    distribute() {
-        return this._call(Bidding, 'distribute', this._value, Array.from(arguments))
+    returnNAS() {
+        return this._call(Bidding, 'returnNAS', this._value, Array.from(arguments))
     }
 
     transferFund(addr, value) {

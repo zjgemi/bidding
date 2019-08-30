@@ -47,13 +47,13 @@ async function main() {
     console.log("Addr2 balance: "+LocalContext.getBalance(TestKeys.otherKeys[2].getAddressString()).div(BigNumber(10).pow(18)).toString(10))
 
     LocalContext.blockHeight = 40
-    Bidding.distribute()
+    Bidding.returnNAS()
     console.log("Contract balance: "+LocalContext.getBalance(LocalContext.getContractAddress(Bidding)).div(BigNumber(10).pow(18)).toString(10))
     console.log("Addr0 balance: "+LocalContext.getBalance(TestKeys.otherKeys[0].getAddressString()).div(BigNumber(10).pow(18)).toString(10))
     console.log("Addr1 balance: "+LocalContext.getBalance(TestKeys.otherKeys[1].getAddressString()).div(BigNumber(10).pow(18)).toString(10))
     console.log("Addr2 balance: "+LocalContext.getBalance(TestKeys.otherKeys[2].getAddressString()).div(BigNumber(10).pow(18)).toString(10))
 
-    Bidding.transferFund(TestKeys.otherKeys[3].getAddressString(),BigNumber(10).pow(18).mul(20000).toString(10))
+    Bidding.transferFund(TestKeys.otherKeys[3].getAddressString(),BigNumber(10).pow(18).mul(20).toString(10))
     console.log("Contract balance: "+LocalContext.getBalance(LocalContext.getContractAddress(Bidding)).div(BigNumber(10).pow(18)).toString(10))
     console.log("Addr3 balance: "+LocalContext.getBalance(TestKeys.otherKeys[3].getAddressString()).div(BigNumber(10).pow(18)).toString(10))
 

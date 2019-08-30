@@ -6,7 +6,7 @@
     "getPledge",
     "getTotal",
     "getPledges",
-    "distribute",
+    "returnNAS",
     "transferFund"
   ],
   "testMethods": [],
@@ -45,7 +45,7 @@
       "value": "0",
       "args": {}
     },
-    "distribute": {
+    "returnNAS": {
       "caller": "{caller}",
       "value": "0",
       "args": {}

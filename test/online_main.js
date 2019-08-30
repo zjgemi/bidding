@@ -10,7 +10,9 @@ const NebUtil = require('../lib/neb_util.js')
 
 
 async function main() {
-
+    console.log('deploy begin...')
+    await Bidding._deploy("n1UiVK8ZPsJ44QNTtHTP4z2MLWbN3DqahRF",2394240,2394280)
+    await console.log(Bidding.getConfig())
 }
 
 main()

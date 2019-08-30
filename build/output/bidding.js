@@ -35,11 +35,11 @@ CurrentData.prototype = {
             r.push(address);
             this._storage.put("address_list", r);
         }
-        p = BigNumber(p).add(BigNumber(pledge)).toString(10);
+        p = new BigNumber(p).add(new BigNumber(pledge)).toString(10);
         this._storage.put(address, p);
 
         let tot = this._getTotal();
-        tot = BigNumber(tot).add(BigNumber(pledge)).toString(10);
+        tot = new BigNumber(tot).add(new BigNumber(pledge)).toString(10);
         this._storage.put("total", tot);
     }
 };
@@ -88,7 +88,6 @@ Bidding.prototype = {
         this._verifyFromMultisig();
         this._config = {
             multiSig: config.multiSig,
-            NAX: config.NAX,
             startHeight: config.startHeight,
             endHeight: config.endHeight
         };
@@ -107,7 +106,7 @@ Bidding.prototype = {
             throw ("The bidding has finished");
         }
 
-        if (BigNumber(5).mul(this._unit).gt(BigNumber(value))) {
+        if (new BigNumber(5).mul(this._unit).gt(new BigNumber(value))) {
             throw ("The amount cannot be less than 5 NAS");
         }
         this._currentData.addPledge(address, value);
@@ -144,25 +143,21 @@ Bidding.prototype = {
         return result;
     },
 
-    distribute: function() {
+    returnNAS: function() {
         this._verifyFromMultisig();
         let height = Blockchain.block.height;
         if (height <= this._config.endHeight) {
             throw ("The bidding has not finished yet");
         }
-        tot = BigNumber(this.getTotal());
-        let NAXContract = new Blockchain.Contract(this._config.NAX);
+        let target = 20;//20000;
+        tot = new BigNumber(this.getTotal());
         let addrs = this.getAddressList();
         for (let i = 0; i < addrs.length; ++i) {
             let addr = addrs[i];
-            let value = BigNumber(this.getPledge(addr));
-            let nax = value.div(tot).mul(3000000);
-            nax = nax.mul(BigNumber(10).pow(9)).floor().toString(10);
-            //console.log("transfer "+nax+" NAX to "+addr);
-            NAXContract.call("transfer", addr, nax);
+            let value = new BigNumber(this.getPledge(addr));
 
-            if (tot.gt(BigNumber(20000).mul(this._unit))) {
-                let returnNAS = value.sub(value.div(tot).mul(20000).mul(this._unit));
+            if (tot.gt(new BigNumber(target).mul(this._unit))) {
+                let returnNAS = value.sub(value.div(tot).mul(target).mul(this._unit));
                 returnNAS = returnNAS.floor().toString(10);
                 let r = Blockchain.transfer(addr, returnNAS);
                 if (r) {

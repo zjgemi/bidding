@@ -136,17 +136,17 @@ class Online extends OnlineBase {
         }
     }
 
-    async distributeTest() {
+    async returnNASTest() {
         try {
-            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'distribute', Array.from(arguments)))
+            return this._testResult(await this.nebUtil.callTest(this._account.getAddressString(), this._contractAddress, this._value, 'returnNAS', Array.from(arguments)))
         } finally {
             this._reset()
         }
     }
 
-    async distribute() {
+    async returnNAS() {
         try {
-            return await this._getTxResult('Bidding.distribute', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'distribute', Array.from(arguments)))
+            return await this._getTxResult('Bidding.returnNAS', await this.nebUtil.oneKeyCall(this._account, this._contractAddress, this._value, 'returnNAS', Array.from(arguments)))
         } finally {
             this._reset()
         }
